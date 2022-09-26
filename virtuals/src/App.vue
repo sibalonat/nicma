@@ -4,7 +4,7 @@ import { onMounted, reactive } from "@vue/runtime-core";
 import useAuth from "./auth/useAuth";
 // axios.post()
 
-const { login, getAuthenticated: authenticated, getUser: user, errors } = useAuth()
+const { login, logout, getAuthenticated: authenticated, getUser: user, errors } = useAuth()
 
 // reactive
 const form = reactive({
@@ -14,7 +14,7 @@ const form = reactive({
 
 
 onMounted(() => {
-  login
+  login, logout
 })
 
 </script>
@@ -23,7 +23,7 @@ onMounted(() => {
 
   <div>
     <div v-if="authenticated">
-        hey {{ user.name }}
+        hey {{ user.name }} <button type="button" @click="logout">Logout</button>
     </div>
     <form @submit.prevent="login(form)">
       <!-- label 1 -->

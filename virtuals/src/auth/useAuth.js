@@ -45,12 +45,22 @@ export default function useAuth() {
             if (error.response.status === 422) {
                 errors.value = error.response.data.errors
             }
-            // console.dir(error);
         }
     };
 
+    const logout = async () => {
+        try {
+            axios.post('/logout')
+            setAuthenticated(false)
+            setUser({})
+        } catch (error) {
+
+        }
+    }
+
     return {
         login,
+        logout,
         attempt,
         getAuthenticated,
         getUser,
